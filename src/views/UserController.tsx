@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { UserInfo } from "../types/userInfo";
+import { Container } from "@mui/material";
+import UserTable from "../components/UserTable";
 
 function UserController() {
   const [userInfoData, setUserInfoData] = useState<
@@ -27,6 +29,9 @@ function UserController() {
   return (
     <div>
       <h1>KÄYTTÄJIEN HALLINTAPANEELI</h1>
+      <Container maxWidth="sm">
+        {userInfoData?.length && <UserTable tableData={userInfoData} />}
+      </Container>
     </div>
   );
 }
