@@ -26,6 +26,9 @@ function UserController() {
     const userToAppend: UserInfo = { id: maxId + 1, ...newUser };
     setUserInfoData([...userInfoData, userToAppend]);
   }
+  function deleteUser(id: number) {
+    setUserInfoData([...userInfoData.filter((user) => user.id !== id)]);
+  }
   useEffect(() => {
     getUserData();
   }, []);
@@ -35,7 +38,7 @@ function UserController() {
       <h1>KÄYTTÄJIEN HALLINTAPANEELI</h1>
       <UserModal addUser={appendUser} />
       <Container maxWidth="sm">
-        {userInfoData?.length && <UserTable tableData={userInfoData} />}
+        <UserTable tableData={userInfoData} deleteUser={deleteUser} />
       </Container>
     </div>
   );
