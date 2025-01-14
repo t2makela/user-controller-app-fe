@@ -1,9 +1,10 @@
 import "./App.css";
+import UserController from "./views/UserController";
 
 function App() {
   return (
     <>
-      <h1>KÄYTTÄJIEN HALLINTAPANEELI</h1>
+      <UserController />
     </>
   );
 }
