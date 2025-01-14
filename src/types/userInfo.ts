@@ -23,11 +23,21 @@ export const UserInfoSchema = z.object({
   id: z.number(),
   name: z.string(),
   username: z.string(),
-  email: z.string(),
+  email: z.string().email(),
   address: AddressSchema,
   phone: z.string(),
-  website: z.string(),
+  website: z.string().url(),
   company: CompanySchema,
 });
 
 export type UserInfo = z.infer<typeof UserInfoSchema>;
+
+export const ReducedUserInfoSchema = z.object({
+  name: z.string().min(3),
+  username: z.string().min(3),
+  email: z.string().email("Please provide a valid email."),
+  phone: z.string(),
+  website: z.string().url("Please provide a valid website url"),
+});
+
+export type ReducedUserInfo = z.infer<typeof ReducedUserInfoSchema>;
