@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import { UserInfo } from "../types/userInfo";
+import { ReducedUserInfo, UserInfo } from "../types/userInfo";
 import { Container } from "@mui/material";
 import UserTable from "../components/UserTable";
+import UserModal from "../components/UserModal";
 
 function UserController() {
-  const [userInfoData, setUserInfoData] = useState<
-    Array<UserInfo> | undefined
-  >();
+  const [userInfoData, setUserInfoData] = useState<UserInfo[]>([]);
   const req = "https://jsonplaceholder.typicode.com/users";
 
   async function getUserData() {
@@ -22,6 +21,11 @@ function UserController() {
     }
   }
 
+  function appendUser(newUser: ReducedUserInfo) {
+    const maxId = Math.max(...userInfoData.map((user) => user.id));
+    const userToAppend: UserInfo = { id: maxId + 1, ...newUser };
+    setUserInfoData([...userInfoData, userToAppend]);
+  }
   useEffect(() => {
     getUserData();
   }, []);
@@ -29,6 +33,7 @@ function UserController() {
   return (
     <div>
       <h1>KÄYTTÄJIEN HALLINTAPANEELI</h1>
+      <UserModal addUser={appendUser} />
       <Container maxWidth="sm">
         {userInfoData?.length && <UserTable tableData={userInfoData} />}
       </Container>
