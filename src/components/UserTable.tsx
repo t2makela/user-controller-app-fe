@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import Button from "@mui/material/Button";
 import { UserInfo } from "../types/userInfo";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 function UserTable({
   tableData,
@@ -38,7 +39,7 @@ function UserTable({
       {tableData.length === 0 && "No users to show"}
       {tableData.length > 0 && (
         <TableContainer component={Paper}>
-          <Table>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow>
                 {tableHeaders?.map((header) => (
@@ -70,9 +71,10 @@ function UserTable({
                   <TableCell component="th" scope="row">
                     <Button
                       variant="contained"
+                      startIcon={<DeleteIcon />}
                       onClick={() => handleDelete(row.id)}
                     >
-                      Delete user
+                      Delete
                     </Button>
                   </TableCell>
                   {/* ))} */}

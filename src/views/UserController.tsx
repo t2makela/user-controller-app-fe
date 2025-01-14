@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { ReducedUserInfo, UserInfo } from "../types/userInfo";
-import { Container } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import UserTable from "../components/UserTable";
 import UserModal from "../components/UserModal";
+import Box from "@mui/material/Box";
+import "../App.css";
 
 function UserController() {
   const [userInfoData, setUserInfoData] = useState<UserInfo[]>([]);
@@ -34,13 +36,29 @@ function UserController() {
   }, []);
 
   return (
-    <div>
-      <h1>KÄYTTÄJIEN HALLINTAPANEELI</h1>
-      <UserModal addUser={appendUser} />
-      <Container maxWidth="sm">
-        <UserTable tableData={userInfoData} deleteUser={deleteUser} />
-      </Container>
-    </div>
+    <>
+      <div className="usercontrollerheader">
+        <Typography
+          align="center"
+          color="primary"
+          id="modal-modal-title"
+          variant="h1"
+          component="h1"
+        >
+          User controller panel
+        </Typography>
+      </div>
+      <div>
+        <Container maxWidth="md">
+          <Box align="right">
+            <UserModal addUser={appendUser} />
+          </Box>
+        </Container>
+        <Container maxWidth="md">
+          <UserTable tableData={userInfoData} deleteUser={deleteUser} />
+        </Container>
+      </div>
+    </>
   );
 }
 
