@@ -52,7 +52,6 @@ function UserTable({
             <TableBody>
               {tableData.map((row) => (
                 <TableRow key={row.id}>
-                  {/* {tableHeaders.map(header => ( */}
                   <TableCell component="th" scope="row">
                     {row.name}
                   </TableCell>
@@ -77,7 +76,6 @@ function UserTable({
                       Delete
                     </Button>
                   </TableCell>
-                  {/* ))} */}
                 </TableRow>
               ))}
             </TableBody>
