@@ -15,13 +15,13 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: 250,
   bgcolor: "background.paper",
+  borderRadius: "8px",
   border: "2px solid #000",
+
   boxShadow: 24,
   p: 4,
 };
 const inputFieldBox = {
-  isplay: "flex",
-  flexWrap: "nowrap",
   justifyContent: "flex-start",
   alignContent: "space-between",
   p: 1,
